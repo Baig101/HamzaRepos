@@ -12,8 +12,7 @@ stage ('Wait for EC2 to come online ..') { //stage4
 
    sh """
 
-   whoami
-   pwd
+   /usr/local/bin/aws ec2 describe-instances
       
                 
         """
