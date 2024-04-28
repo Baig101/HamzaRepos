@@ -4,16 +4,6 @@ pipeline {
         timeout(time: 35, unit: 'MINUTES')   // timeout on whole pipeline job
     }
 
-      parameters {
-
-  choice choices: ['init', 'plan', 'apply', 'destroy'], name: 'action'
-  string defaultValue: 'ami-0637167bbec7f1b90', description: 'Latest AMI for Application PAS Server', name:   'app'
-  string defaultValue: 'ami-084339b4fad29d035', description: 'Lates AMI for ASCS Server', name:   'ascs'
-  string defaultValue: 'ami-0a0e669267d8d5786', description: 'Lates AMI for Database Server', name:   'db'
-
-}
-
-
 stages { //stages
 
 
@@ -21,27 +11,11 @@ stage ('Wait for EC2 to come online ..') { //stage4
     steps {
 
    sh """
-                if [ "$action" == "init" ]
-                then
-                echo "You have chosen: $action, No changes applied.."
-                
-                pwd
-                elif [ "$action" == "plan" ]
-                then
-                echo "You have chosen: $action, No changes applied .."
-                
-                pwd
-                elif [ "$action" == "apply" ]
-                then
-                echo "Terraform wait for EC2 to come online.. "
-                ##chmod u+x '$WORKSPACE/OPS-Terraform/sap/prod/us-east-1/SAP-DR-Setup-Sandbox/JOB-B/status_check.sh'
-                ##cd '$WORKSPACE/OPS-Terraform/sap/prod/us-east-1/SAP-DR-Setup-Sandbox/JOB-B'
-                ##./status_check.sh
-                else
-                echo "New EC2 already deleted.. "
+
+   echo "Hostname is: " hostname
       
-                fi
-             """
+                
+        """
      }
 
   } //stage4
