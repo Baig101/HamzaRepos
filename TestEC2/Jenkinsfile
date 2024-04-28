@@ -1,0 +1,29 @@
+pipeline {
+   agent any
+    options {
+        timeout(time: 35, unit: 'MINUTES')   // timeout on whole pipeline job
+    }
+
+stages { //stages
+
+
+stage ('Wait for EC2 to come online ..') { //stage4
+    steps {
+
+   sh """
+
+   whoami
+   pwd
+      
+                
+        """
+     }
+
+  } //stage4
+
+
+
+
+} //stages
+
+}
