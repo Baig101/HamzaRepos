@@ -12,7 +12,8 @@ stage ('Wait for EC2 to come online ..') { //stage4
 
    sh """
 
-   echo "Hostname is: " hostname
+   whoami
+   pwd
       
                 
         """
