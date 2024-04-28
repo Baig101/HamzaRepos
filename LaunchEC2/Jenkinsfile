@@ -2,4 +2,22 @@ pipeline {
   agent any
   
 
+stages { //stages
+stage('Test pipeline') { //stage1
+script {
+sh '''
+
+whoami
+pwd
+
+'''
+
+}
+
+
+
+} //stage1
+
+} //stages
+
 }
