@@ -19,7 +19,7 @@ stage ('Launch EC2') { //stage1
    sh """
 
 
-                cd '$WORKSPACE/LaunchEC2'
+                cd '$WORKSPACE'
                      pwd
             
       
