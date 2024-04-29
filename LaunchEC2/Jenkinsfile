@@ -1,5 +1,11 @@
 pipeline {
    agent any
+         parameters {
+
+  choice choices: ['init', 'plan', 'apply', 'destroy'], name: 'action'
+  string defaultValue: 'ami-04b70fa74e45c3917', description: 'Latest AMI for Application Server', name:   'app'
+
+}
     options {
         timeout(time: 35, unit: 'MINUTES')   // timeout on whole pipeline job
     }
@@ -7,12 +13,36 @@ pipeline {
 stages { //stages
 
 
-stage ('Wait for EC2 to come online ..') { //stage4
+stage ('Launch EC2') { //stage4
     steps {
 
    sh """
 
-   terraform -help
+   if [ "$action" == "init" ]
+                     then 
+                     echo "initilizing the backend .."
+                     cd '$WORKSPACE/LaunchEC2'
+                     terraform init
+                     
+            elif [ "$action" == "plan" ]
+                    then
+                   echo "you have select terraform plan to view the correct syntax.."
+                   cd '$WORKSPACE/LaunchEC2'
+                    ##terraform plan 
+
+            elif [ "$action" == "apply" ]
+                    then
+                    echo "you have select terraform apply to implement the changes.."
+                    cd '$WORKSPACE/LaunchEC2
+                   ##terraform apply --auto-approve
+                   
+
+            else
+                    cd '$WORKSPACE/LaunchEC2'
+                    ##terraform destroy --auto-approve
+                    
+
+                   fi
       
                 
         """
