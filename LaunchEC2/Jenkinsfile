@@ -15,17 +15,20 @@ stages { //stages
 
 stage ('Launch EC2') { //stage1
     steps {
+    script {
+         sh """
 
-   sh """
-
-
-                cd '$WORKSPACE'
-                     pwd
-            
+             if [ "$action" == "init" ]
+                     then 
+                     echo "initilizing the backend .."
+                     cd '$WORKSPACE/LaunchEC2'
+                     terraform init     
       
-                
+          fi
         """
      }
+
+    }
 
   } //stage1
 
