@@ -19,9 +19,9 @@ stage ('Launch EC2') { //stage1
    sh """
 
            if [ "$action" == "init" ]
-                     then 
-                     echo "initilizing the backend .."
-                     cd '$WORKSPACE/LaunchEC2'
+                then 
+                echo "initilizing the backend .."
+                cd '$WORKSPACE/LaunchEC2'
                      pwd
             fi
       
