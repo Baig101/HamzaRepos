@@ -33,7 +33,7 @@ stage ('Launch EC2') { //stage4
             elif [ "$action" == "apply" ]
                     then
                     echo "you have select terraform apply to implement the changes.."
-                    cd '$WORKSPACE/LaunchEC2
+                    cd '$WORKSPACE/LaunchEC2'
                    ##terraform apply --auto-approve
                    
 
